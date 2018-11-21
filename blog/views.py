@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
+from django.http import HttpResponse
 
 
 def home(request):
@@ -13,3 +14,13 @@ def post_list(request):
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     return render(request, 'blog/post_detail.html', {'post': post})
+
+def nba_shotchart(request):
+    return render(request, 'blog/nba_shotchart.html')
+
+def testAjax(request):
+    if request.method == 'GET':
+        message = request.GET['msg']
+        return HttpResponse(message) # Sending an success response
+    else:
+        return HttpResponse("Request method is not a GET")

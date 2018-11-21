@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}NBA Shotchart Maker{% endblock %}
+{% block js %}<script src="{% static '/js/test-ajax.js/' %}"></script>{% endblock %}
+
+  {% block content %}
+    <div class="page">
+      <h2>Let's Make a Chart!</h2>
+      <p>These are instructions:</p>
+    </div>
+    <button id="test-ajax">Send</button>
+    <div id="results"></div>
+  {% endblock %}
