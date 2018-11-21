@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
 from django.http import HttpResponse
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 
 
 def home(request):
@@ -21,6 +25,6 @@ def nba_shotchart(request):
 def testAjax(request):
     if request.method == 'GET':
         message = request.GET['msg']
-        return HttpResponse(message) # Sending an success response
+        return HttpResponse(message) # Sending a success response
     else:
         return HttpResponse("Request method is not a GET")
