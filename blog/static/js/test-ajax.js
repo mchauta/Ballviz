@@ -9,13 +9,13 @@ jQuery(document).ready( function() {
     $.ajax(
     {
         type:"GET",
-        url: "/likepost",
+        url: "/test-plot",
         data:{
                  msg: message
         },
         success: function( data )
         {
-            $( '#results' ).text(data);
+            $( '#results' ).attr('src', 'data:image/png;base64, ' + data);
         }
      })
 });

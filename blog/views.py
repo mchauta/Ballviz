@@ -5,6 +5,8 @@ from django.http import HttpResponse
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import io
+import base64
 
 
 
@@ -21,6 +23,18 @@ def post_detail(request, slug):
 
 def nba_shotchart(request):
     return render(request, 'blog/nba_shotchart.html')
+
+def test_plot(request):
+    data = [3,1,4,1,5]
+    plt.plot(data)
+    plt.ylabel('some numbers')
+
+    stringIObytes = io.BytesIO()
+    plt.savefig(stringIObytes, format='png')
+    stringIObytes.seek(0)
+    base64_data = base64.b64encode(stringIObytes.read())
+
+    return HttpResponse(base64_data)
 
 def testAjax(request):
     if request.method == 'GET':

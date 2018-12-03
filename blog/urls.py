@@ -7,5 +7,5 @@ urlpatterns = [
     path('blog/', views.post_list, name='post_list'),
     path('post/<slug:slug>/', views.post_detail, name='post_detail'),
     #path('likepost/$', views.testAjax, name='testAjax'),
-    re_path(r'^likepost/$', views.testAjax, name='testAjax')
+    re_path(r'^test-plot/$', views.test_plot, name='test_plot')
 ]
