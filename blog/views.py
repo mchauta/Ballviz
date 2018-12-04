@@ -7,6 +7,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
 import base64
+from nba_api.stats.static import players
+import json
 
 
 
@@ -36,9 +38,10 @@ def test_plot(request):
 
     return HttpResponse(base64_data)
 
-def testAjax(request):
+def find_players(request):
     if request.method == 'GET':
-        message = request.GET['msg']
-        return HttpResponse(message) # Sending a success response
+        term = request.GET['term'];
+        foundPlayers = json.dumps(players.find_players_by_full_name(term));
+        return HttpResponse(foundPlayers) # Sending a success response
     else:
         return HttpResponse("Request method is not a GET")
