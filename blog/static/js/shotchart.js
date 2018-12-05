@@ -1,14 +1,5 @@
 'use strict';
 
-const Suggestions = (props) => {
-  const options = props.results.map( player => (
-    <option value ="{player.id}"key={player.id}>
-      {player.full_name}
-    </option>
-  ))
-  return (<select><option>Select a player...</option>{options}</select>)
-  //<option value="none">Select a player...</option>
-}
 
 class SearchPlayers extends React.Component {
   state = {
@@ -51,49 +42,69 @@ class SearchPlayers extends React.Component {
 
   render() {
     return (
-      <form>
+      <form className="chart_searchForm">
         <input
           placeholder="Search for a player..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
+          className="col-6"
         />
-        <label>Results:</label>
-        <Suggestions results={this.state.results} />
+        <select
+          className="col-6"
+          onChange={this.props.updatePlayer}>
+          <option>Select a player...</option>
+          {
+           this.state.results.map(function(player, i ){
+             return (
+               <option
+                  key = {i}
+                  value={player.id}>
+                    {player.full_name}
+                </option>)
+           })
+         }
+        </select>
       </form>
     )
   }
 }
 
 
-class PreviewImage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false,
-    };
-  }
-
-  render () {
-    return (
-      <img src="" />
-    );
-  }
-}
-
 
 class ChartMaker extends React.Component {
   constructor(props) {
     super(props);
+    this.updatePlayer = this.updatePlayer.bind(this);
     this.state = {
+      hasPlayer: false,
       selectedPlayer: '',
-      selectedDate: '',
+      playerPreview: '/static/img/player_placeholder.jpg/',
+      hasSeason: false,
+      selectedSeason: '',
+      hasTheme: false,
       selectedTheme: '',
-      preview: '',
+      previewSrc: '/static/img/placeholder.jpg/',
       isLoading: false,
 
     };
   }
 
+  getHeadshot( event ) {
+
+    const baseURL = 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/';
+    const ext = '.png';
+    let imageURL = baseURL + event.target.value + ext;
+
+    console.log(imageURL, "URL");
+    return imageURL;
+  }
+
+  updatePlayer ( event ) {
+    console.log(event);
+    let url = this.getHeadshot( event );
+    let id = event.target.value
+    this.setState({playerPreview: url, selectedPlayer: id })
+  }
   createPreview (player, theme, date) {
     this.setState({loading: true });
     //ajax Request
@@ -109,11 +120,19 @@ class ChartMaker extends React.Component {
 
     return (
       <div className="chartMaker">
-        <div className="col-sm-12 col-md-6">
-          <PreviewImage />
+        <div className="col-sm-12 col-md-6 chartPreview">
+          <img src={this.state.previewSrc} />
         </div>
-        <div className="col-sm-12 col-md-6">
-          <SearchPlayers />
+        <div className="col-sm-12 col-md-6 chartFields">
+          <div className="player_preview">
+            <img src={this.state.playerPreview} />
+          </div>
+          <div className="row player_search">
+            <SearchPlayers updatePlayer={this.updatePlayer}/>
+          </div>
+          <div className="row player_selections">
+
+          </div>
         </div>
       </div>
     );

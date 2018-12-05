@@ -1,0 +1,30 @@
+.chartMaker {
+  display: flex;
+}
+
+.chartFields {
+
+}
+
+.chartPreview {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.player_preview {
+  width: 100%;
+  padding: 20px;
+  img {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+.chart_searchForm {
+  width: 100%;
+  display: flex;
+}
