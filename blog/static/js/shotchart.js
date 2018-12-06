@@ -8,6 +8,9 @@ $(document).ready( function() {
   const results = $('#search-results');
   const termLabel = $('#search-term-label');
   const playerHeadshot = $('#player-headshot');
+  const stepOne = $('#step-one');
+  const stepTwo = $('#step-two');
+  stepTwo.hide();
   termLabel.hide();
   results.hide();
 
@@ -16,7 +19,7 @@ $(document).ready( function() {
     results.empty();
   }
   results.on('click','.player-selector',function(){
-    console.log("crash");
+    selectPlayer($(this).val(), $(this).text());
   });
   function displayResults(data, term) {
     parseData = JSON.parse(data);
@@ -34,9 +37,17 @@ $(document).ready( function() {
     }
   }
 
+  function getHeadshot( id ) {
+    const baseURL = 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/';
+    const ext = '.png';
+    let imageURL = baseURL + id + ext;
+    return imageURL;
+  }
+
   function selectPlayer(id, name) {
-    headshotURL = getPlayerHeadshot(id);
+    headshotURL = getHeadshot(id);
     playerHeadshot.attr('src', headshotURL );
+    stepOne.hide();
     stepTwo.fadeIn();
 
   }
