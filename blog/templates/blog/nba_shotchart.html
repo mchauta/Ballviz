@@ -10,42 +10,34 @@
 
 {% block css %}
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 {% endblock %}
 
 
   {% block content %}
     <div class="page">
-      <div class="row">
-          <div class="col-md-12">
-            <h2>Let's Make a Chart!</h2>
-            <p>These are instructions:</p>
-            <button id="test-ajax">Send</button>
-            <img src="" id="results">
-          </div>
-      </div>
-      <div class="row">
-        <div id="chart-container">
-          <div class="chartMaker">
-            <div class="col-sm-12 col-md-6 chartPreview">
-              <img src="/static/img/placeholder.jpg" />
-            </div>
-            <div class="col-sm-12 col-md-6 chartFields">
-              <div class="player_preview">
-                <img src="/static/img/player_placeholder.jpg" />
-              </div>
-              <div class="row player_search">
-                <div class="chart_searchForm">
-                  <input id="player-search-term" class="col-9" placeholder="Search for a player..." />
-                  <button id="player-search-button" class="col-3">Search</button>
+        <h1>NBA Player Shotchart Maker</h1>
+        <div id="chart-container" class="ChartMaker">
+            <div id="step-one">
+              <h2>Step 1: Pick a Player</h2>
+              <div class="row">
+                <div class="col-12 step-icon">
+                  <i class="fas fa-search"></i>
                 </div>
               </div>
-              <div class="row player_selections">
+              <div class="row chart_searchForm">
+                <input id="player-search-term" class="col-9" placeholder="Search for a player..." />
+                <button id="player-search-button" class="col-3">Search</button>
+              </div>
+
+              <div class="row player-selection">
+                <div id="search-term-label">
+
+                </div>
                 <ul id="search-results">
                 </ul>
               </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
   {% endblock %}

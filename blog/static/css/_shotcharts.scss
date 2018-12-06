@@ -26,6 +26,22 @@
 }
 
 .chart_searchForm {
-  width: 100%;
-  display: flex;
+    width: 75%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-term-label{
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    color: gray;
+  }
+
+.step-icon {
+    width: 100%;
+    color: $orange;
+    text-align: center;
+    font-size: 7rem;
 }

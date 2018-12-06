@@ -1,9 +1,38 @@
 $(document).ready( function() {
 
+
+
+
   const searchButton = $('#player-search-button');
   const searchInput = $('#player-search-term');
   const results = $('#search-results');
+  const termLabel = $('#search-term-label');
+  termLabel.hide();
   results.hide();
+
+  function clearSearch() {
+    termLabel.empty();
+    results.empty();
+  }
+
+  function displayResults(data, term) {
+    parseData = JSON.parse(data);
+    if (parseData.length > 0) {
+      termLabel.text('Search results for "' + term + '":');
+      termLabel.fadeIn();
+      $.map(parseData, function(player, i) {
+        results.append('<li value=' + player.id + '>' + player.full_name + '</li>');
+      })
+      results.fadeIn();
+    } else {
+      termLabel.text('There are no results for "' + term + '"');
+      termLabel.fadeIn();
+    }
+  }
+
+  searchInput.change(function() {
+    clearSearch();
+  })
 
   searchInput.keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -26,10 +55,8 @@ $(document).ready( function() {
         },
         success: function( data )
         {
-          $.map(JSON.parse(data), function(player, i) {
-          results.append('<li value=' + player.id + '>' + player.full_name + '</li>');
-        })
-          results.fadeIn();
+          console.log(data);
+          displayResults(data, term);
 
         },
         error: function(error) {
