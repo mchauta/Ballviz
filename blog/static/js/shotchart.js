@@ -7,6 +7,7 @@ $(document).ready( function() {
   const searchInput = $('#player-search-term');
   const results = $('#search-results');
   const termLabel = $('#search-term-label');
+  const playerHeadshot = $('#player-headshot');
   termLabel.hide();
   results.hide();
 
@@ -14,20 +15,30 @@ $(document).ready( function() {
     termLabel.empty();
     results.empty();
   }
-
+  results.on('click','.player-selector',function(){
+    console.log("crash");
+  });
   function displayResults(data, term) {
     parseData = JSON.parse(data);
     if (parseData.length > 0) {
       termLabel.text('Search results for "' + term + '":');
       termLabel.fadeIn();
       $.map(parseData, function(player, i) {
-        results.append('<li value=' + player.id + '>' + player.full_name + '</li>');
+        results.append('<li class="player-selector" value=' + player.id + '>' + player.full_name + '</li>');
       })
+
       results.fadeIn();
     } else {
       termLabel.text('There are no results for "' + term + '"');
       termLabel.fadeIn();
     }
+  }
+
+  function selectPlayer(id, name) {
+    headshotURL = getPlayerHeadshot(id);
+    playerHeadshot.attr('src', headshotURL );
+    stepTwo.fadeIn();
+
   }
 
   searchInput.change(function() {

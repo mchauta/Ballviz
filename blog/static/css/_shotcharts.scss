@@ -13,6 +13,26 @@
   }
 }
 
+.step {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+#search-results {
+  margin-left: auto;
+  margin-right: auto;
+    li {
+      list-style-type: none;
+      border: 2px solid $grey;
+      /* width: 60%; */
+      margin-right: auto;
+      margin-left: auto;
+      font-size: 1.1rem;
+      padding: 8px;
+      margin-bottom: 5px;
+      border-radius: 25px;
+      text-align: center;
+  }
+}
 .player_preview {
   width: 100%;
   padding: 20px;
