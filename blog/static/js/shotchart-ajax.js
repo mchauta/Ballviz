@@ -1,15 +1,10 @@
 jQuery(document).ready( function() {
 
-  let test = 'this is a test';
-  console.log(test);
-
-  $('#test-ajax').click(function(){
-    var message = 'Hello!';
-    console.log("function called");
+  function getAllPlayers () {
     $.ajax(
     {
         type:"GET",
-        url: "/test-plot",
+        url: "/all-players",
         data:{
                  msg: message
         },
@@ -18,6 +13,10 @@ jQuery(document).ready( function() {
             $( '#results' ).attr('src', 'data:image/png;base64, ' + data);
         }
      })
-});
+  }
 
+  $('#select-player').click(function(){
+    var message = 'Hello!';
+    console.log("function called");
+});
 })

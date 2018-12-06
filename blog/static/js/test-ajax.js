@@ -16,6 +16,9 @@ jQuery(document).ready( function() {
         success: function( data )
         {
             $( '#results' ).attr('src', 'data:image/png;base64, ' + data);
+        },
+        error: function(error) {
+          console.log(error);
         }
      })
 });

@@ -1,19 +1,17 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block title %}NBA Shotchart Maker{% endblock %}
+
 {% block js %}
   <script src="{% static '/js/test-ajax.js/' %}"></script>
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-  <!-- Load Babel -->
-  <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <!-- Load our React component. -->
-  <script src="{% static '/js/shotchart.js' %}" type="text/babel"></script>
+  <script src="{% static '/js/shotchart.js/' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 {% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
 
   {% block content %}
     <div class="page">
@@ -26,7 +24,28 @@
           </div>
       </div>
       <div class="row">
-        <div id="react-container"></div>
+        <div id="chart-container">
+          <div class="chartMaker">
+            <div class="col-sm-12 col-md-6 chartPreview">
+              <img src="/static/img/placeholder.jpg" />
+            </div>
+            <div class="col-sm-12 col-md-6 chartFields">
+              <div class="player_preview">
+                <img src="/static/img/player_placeholder.jpg" />
+              </div>
+              <div class="row player_search">
+                <div class="chart_searchForm">
+                  <input id="player-search-term" class="col-9" placeholder="Search for a player..." />
+                  <button id="player-search-button" class="col-3">Search</button>
+                </div>
+              </div>
+              <div class="row player_selections">
+                <ul id="search-results">
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   {% endblock %}
