@@ -4,7 +4,10 @@
 
 {% block js %}
   <script src="{% static '/js/test-ajax.js/' %}"></script>
-  <script src="{% static '/js/shotchart.js/' %}"></script>
+  <script src="{% static '/js/shotchart/const.js/' %}"></script>
+  <script src="{% static '/js/shotchart/functions.js/' %}"></script>
+  <script src="{% static '/js/shotchart/ajax.js/' %}"></script>
+  <script src="{% static '/js/shotchart/main.js/' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 {% endblock %}
 
@@ -46,8 +49,37 @@
                     <div id="player-team"></div>
 
                   </div>
-                  <label>Select Season</label>
-                  <select id="season-selector"></select>
+                  <div class="player-fields">
+                    <div class="field-row">
+                      <label>Season:</label>
+                      <select id="season-selector"></select>
+                    </div>
+                    <div class="field-row">
+                      <label>Time Frame:</label>
+                      <select id="timeframe-selector">
+                        <option>Full Season</option>
+                        <option>Single Game</option>
+                      </select>
+                    </div>
+                    <div class="field-row">
+                      <label>Game:</label>
+                      <select id="game-selector"></select>
+                    </div>
+                    <div class="field-row">
+                      <label>Game Time Frame:</label>
+                      <select id="game-frame-selector">
+                        <option>Full Game</option>
+                        <option>First Half</option>
+                        <option>Second Half</option>
+                      </select>
+                    </div>
+                    <div class="field-row">
+                      <label>Theme:</label>
+                      <select id="theme-selector">
+                        <option>Hex</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

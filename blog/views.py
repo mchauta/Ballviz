@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from nba_api.stats.static import players
-from nba_api.stats.endpoints import commonplayerinfo
+from nba_api.stats.endpoints import commonplayerinfo, playergamelog
 import json
 
 
@@ -53,5 +53,16 @@ def player_info(request):
         info = commonplayerinfo.CommonPlayerInfo(player_id=id)
         info = info.get_normalized_json()
         return HttpResponse(info) # Sending a success response
+    else:
+        return HttpResponse("Request method is not a GET")
+
+def get_games(request):
+    if request.method == 'GET':
+        id = request.GET['id']
+        year = request.GET['season']
+        type = request.GET['seasonType']
+        games = playergamelog.PlayerGameLog(player_id=id, season_all=year, season_type_all_star=type)
+        games = games.get_normalized_json()
+        return HttpResponse(games) # Sending a success response
     else:
         return HttpResponse("Request method is not a GET")

@@ -9,5 +9,6 @@ urlpatterns = [
     re_path(r'^player-info/$', views.player_info, name='player_info'),
     re_path(r'^find-players/$', views.find_players, name='find_players'),
     re_path(r'^test-plot/$', views.test_plot, name='test_plot'),
+    re_path(r'^get-games/$', views.get_games, name='get_games'),
 
 ]
