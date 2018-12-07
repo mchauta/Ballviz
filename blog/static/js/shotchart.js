@@ -18,9 +18,11 @@ $(document).ready( function() {
     termLabel.empty();
     results.empty();
   }
+
   results.on('click','.player-selector',function(){
     selectPlayer($(this).val(), $(this).text());
   });
+
   function displayResults(data, term) {
     parseData = JSON.parse(data);
     if (parseData.length > 0) {
@@ -45,6 +47,7 @@ $(document).ready( function() {
   }
 
   function selectPlayer(id, name) {
+    getPlayerInfo(id);
     headshotURL = getHeadshot(id);
     playerHeadshot.attr('src', headshotURL );
     stepOne.hide();
@@ -63,6 +66,24 @@ $(document).ready( function() {
     }
   });
 
+  function getPlayerInfo (id) {
+    $.ajax(
+    {
+        type:"GET",
+        url: "/player-info/",
+        data:{
+                 id: id
+        },
+        success: function( data )
+        {
+          console.log(data);
+
+        },
+        error: function(error) {
+          console.log(error);
+        }
+     })
+  }
   searchButton.click(function() {
     results.empty();
     results.hide();
