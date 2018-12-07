@@ -37,27 +37,17 @@
             </div>
             <div id="step-two" class="step">
               <h2>Step 2: Pick Your Data</h2>
-
+              <button id="go-back-2">Go Back</button>
               <div class="row">
                 <div class="col-12">
                   <div class="player-profile">
                     <img src="/static/img/player_placeholder.jpg/" id="player-headshot">
+                    <div id="player-name"></div>
+                    <div id="player-team"></div>
+
                   </div>
-                  <label>Select Timeframe</label>
-                  <select>
-                    <optgroup label="Single Game">
-                      <option>Full Game</option>
-                      <option>First Half</option>
-                    </optgroup>
-                    <optgroup label="Regular Season">
-                      <option>Full Game</option>
-                      <option>First Half</option>
-                    </optgroup>
-                    <optgroup label="Playoffs">
-                      <option>Full Game</option>
-                      <option>First Half</option>
-                    </optgroup>
-                  </select>
+                  <label>Select Season</label>
+                  <select id="season-selector"></select>
                 </div>
               </div>
             </div>
