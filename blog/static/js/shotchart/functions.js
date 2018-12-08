@@ -48,6 +48,7 @@ function goBack(current, previous) {
 
 function makeSeasonSelector(array) {
   seasonSelector.empty();
+  seasonSelector.append('<option>-</option>');
   for (i = 0; i < array.length; i++ ) {
     let seasonID = array[i].SEASON_ID;
     let season = convertSeasonID(seasonID);
@@ -55,12 +56,28 @@ function makeSeasonSelector(array) {
   }
 }
 
+function makeGameSelector(array) {
+  console.log('in');
+  gameSelector.empty();
+  gameSelector.append('<option>-</option>');
+  for (i = 0; i < array.length; i++ ) {
+    let gameDate = array[i].GAME_DATE;
+    let gameID  = array[i].GAME_ID;
+    let matchup = array[i].MATCHUP;
+    gameSelector.append('<option value=' + gameID + '>' + gameDate + ' - ' + matchup);
+  }
+}
+
 function convertSeasonID(id) {
   legend = ['Pre Season','Regular Season', 'All-Star', 'Playoffs',];
 
   year = id.slice(1);
-  yearEnd = id.slice(3)
-  year = year + '-' + (parseInt(yearEnd)+1);
+  yearEnd = id.slice(3);
+  yearEnd = parseInt(yearEnd)+1;
+  if (yearEnd < 10) {
+    yearEnd = '0' + yearEnd;
+  }
+  year = year + '-' + (yearEnd);
 
   type = id.charAt(0);
   type = legend[parseInt(type) - 1 ];

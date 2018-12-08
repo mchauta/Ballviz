@@ -50,8 +50,11 @@ function getGames(id, season, seasonType) {
                seasonType: seasonType,
       },
       success: function( data )  {
+        selectedGames = JSON.parse(data).PlayerGameLog;
+        makeGameSelector(selectedGames);
+        console.log(selectedGames);
+        //return JSON.parse(selectedGames);
 
-        console.log(JSON.parse(data));
       },
       error: function(error) {
         console.log(error);

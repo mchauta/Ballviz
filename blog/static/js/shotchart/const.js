@@ -12,4 +12,12 @@
   const stepTwo = $('#step-two');
   const goback2 = $('#go-back-2');
   const seasonSelector = $('#season-selector');
+  const gameSelector = $('#game-selector');
+  const gameSelectorRow = $('#game-selector-row');
+  const gameFrameSelector = $('#game-frame-selector');
+  const gameFrameSelectorRow = $('#game-frame-selector-row');
+  const timeFrameSelector = $('#time-frame-selector');
+
+
   let currentPlayer = '';
+  let selectedGames = [];

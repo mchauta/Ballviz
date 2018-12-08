@@ -6,6 +6,8 @@ $(document).ready( function() {
   stepTwo.hide();
   termLabel.hide();
   results.hide();
+  gameSelectorRow.hide();
+  gameFrameSelectorRow.hide();
 
 
   goback2.click(function() {
@@ -37,6 +39,22 @@ $(document).ready( function() {
   seasonSelector.change(function() {
     player = currentPlayer;
     season = convertSeasonID(this.value);
-    getGames(player, season.year, season.type);
+    if (this.value == '-') {
+      return;
+    } else {
+      getGames(player, season.year, season.type);
+    }
+
+  })
+
+  timeFrameSelector.change(function() {
+    if (this.value == 'Single Game') {
+      gameSelectorRow.fadeIn();
+      gameFrameSelectorRow.fadeIn();
+    } else {
+      gameSelectorRow.hide();
+      gameFrameSelectorRow.hide();
+    }
+
   })
 })
