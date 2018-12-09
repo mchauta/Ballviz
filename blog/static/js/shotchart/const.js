@@ -17,6 +17,8 @@
   const gameFrameSelector = $('#game-frame-selector');
   const gameFrameSelectorRow = $('#game-frame-selector-row');
   const timeFrameSelector = $('#time-frame-selector');
+  const makeChartButton = $('#make-chart');
+  const chartResults = $('#chart-results');
 
 
   let currentPlayer = '';

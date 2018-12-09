@@ -8,8 +8,10 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from nba_api.stats.static import players
-from nba_api.stats.endpoints import commonplayerinfo, playergamelog
+from nba_api.stats.endpoints import commonplayerinfo, playergamelog, shotchartdetail
 import json
+import pandas as pd
+import seaborn as sns
 
 
 
@@ -64,5 +66,39 @@ def get_games(request):
         games = playergamelog.PlayerGameLog(player_id=id, season_all=year, season_type_all_star=type)
         games = games.get_normalized_json()
         return HttpResponse(games) # Sending a success response
+    else:
+        return HttpResponse("Request method is not a GET")
+
+def make_chart(request):
+    if request.method == 'GET':
+        teamID = '0';
+        print(teamID)
+        theme = request.GET['theme']
+        #type = request.GET['type']
+        seasonType = request.GET['seasonType']
+        playerID = request.GET['playerID']
+        season = request.GET['season']
+        #gameID = request.GET['gameID']
+        info = shotchartdetail.ShotChartDetail(
+            player_id = playerID,
+            team_id = teamID,
+            season_type_all_star = seasonType,
+            season_nullable = season,
+            )
+        info = info.get_json()
+        shots = json.loads(info)
+        headers = shots['resultSets'][0]['headers']
+        shots = shots['resultSets'][0]['rowSet']
+        shot_df = pd.DataFrame(shots, columns=headers)
+        sns.set_style("white")
+        sns.set_color_codes()
+        plt.figure(figsize=(12,11))
+        plt.scatter(shot_df.LOC_X, shot_df.LOC_Y)
+        stringIObytes = io.BytesIO()
+        plt.savefig(stringIObytes, format='png')
+        stringIObytes.seek(0)
+        base64_data = base64.b64encode(stringIObytes.read())
+
+        return HttpResponse(base64_data) # Sending a success response
     else:
         return HttpResponse("Request method is not a GET")

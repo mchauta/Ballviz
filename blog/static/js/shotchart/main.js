@@ -36,6 +36,12 @@ $(document).ready( function() {
     findPlayers(term);
   })
 
+  makeChartButton.click(function() {
+    console.log(seasonSelector.val());
+    season = convertSeasonID(seasonSelector.val());
+    makeChart(currentPlayer, season.year, season.type );
+  })
+
   seasonSelector.change(function() {
     player = currentPlayer;
     season = convertSeasonID(this.value);

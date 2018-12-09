@@ -61,3 +61,27 @@ function getGames(id, season, seasonType) {
       }
    })
 }
+
+function makeChart(playerID, season, seasonType) {
+  console.log(playerID, season, seasonType);
+  $.ajax(
+  {
+      type:"GET",
+      url: "/make-chart/",
+      data:{
+               playerID: playerID,
+               season: season,
+               seasonType: seasonType,
+               theme: 'Hex',
+      },
+      success: function( data )  {
+      
+        chartResults.attr('src', 'data:image/png;base64, ' + data);
+        //return JSON.parse(selectedGames);
+
+      },
+      error: function(error) {
+        console.log(error);
+      }
+   })
+}
