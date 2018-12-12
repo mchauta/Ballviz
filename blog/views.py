@@ -5,6 +5,8 @@ from django.http import HttpResponse
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.patches import Circle, Rectangle, Arc
+from matplotlib.offsetbox import  OffsetImage
 import io
 import base64
 from nba_api.stats.static import players
@@ -12,6 +14,8 @@ from nba_api.stats.endpoints import commonplayerinfo, playergamelog, shotchartde
 import json
 import pandas as pd
 import seaborn as sns
+import urllib.request
+import NBAapi as nba
 
 
 
@@ -69,10 +73,12 @@ def get_games(request):
     else:
         return HttpResponse("Request method is not a GET")
 
+
+
 def make_chart(request):
     if request.method == 'GET':
+        plt.clf()
         teamID = '0';
-        print(teamID)
         theme = request.GET['theme']
         #type = request.GET['type']
         seasonType = request.GET['seasonType']
@@ -84,20 +90,29 @@ def make_chart(request):
             team_id = teamID,
             season_type_all_star = seasonType,
             season_nullable = season,
+            context_measure_simple = 'FG_PCT',
+
             )
         info = info.get_json()
-        shots = json.loads(info)
-        headers = shots['resultSets'][0]['headers']
-        shots = shots['resultSets'][0]['rowSet']
-        shot_df = pd.DataFrame(shots, columns=headers)
-        sns.set_style("white")
-        sns.set_color_codes()
-        plt.figure(figsize=(12,11))
-        plt.scatter(shot_df.LOC_X, shot_df.LOC_Y)
+        shotChartData = json.loads(info)
+        shots = shotChartData['resultSets'][0]['rowSet']
+        shotHeaders = shotChartData['resultSets'][0]['headers']
+        avg = shotChartData['resultSets'][1]['rowSet']
+        avgHeaders = shotChartData['resultSets'][1]['headers']
+
+        shot_df = pd.DataFrame(shots, columns=shotHeaders)
+        la_df = pd.DataFrame(avg, columns=avgHeaders)
+
+        fig = plt.figure(figsize=(12,10))
+
+        plot = nba.plot.grantland_shotchart(shot_df,la_df)
+        plt.text(0,38,season,fontsize=10,horizontalalignment='center',verticalalignment='center')
+
         stringIObytes = io.BytesIO()
-        plt.savefig(stringIObytes, format='png')
+        plt.savefig(stringIObytes, format='png', bbox_inches='tight', pad_inches=0.1)
         stringIObytes.seek(0)
         base64_data = base64.b64encode(stringIObytes.read())
+
 
         return HttpResponse(base64_data) # Sending a success response
     else:
