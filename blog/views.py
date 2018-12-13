@@ -12,7 +12,7 @@ from nba_api.stats.static import players
 from nba_api.stats.endpoints import commonplayerinfo, playergamelog, shotchartdetail
 import pandas as pd
 import seaborn as sns
-import NBAapi as nba
+#import NBAapi as nba
 
 
 
