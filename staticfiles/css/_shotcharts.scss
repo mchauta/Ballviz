@@ -1,0 +1,146 @@
+.chartMaker {
+  display: flex;
+}
+
+.chartFields {
+
+}
+
+.chartPreview {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.step {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+#search-results {
+  margin-left: auto;
+  margin-right: auto;
+    li {
+      list-style-type: none;
+      margin-right: auto;
+      margin-left: auto;
+      font-size: 1.1rem;
+      padding: 8px;
+      margin-bottom: 5px;
+      text-align: center;
+      display: inline-block;
+      width: 115px;
+      line-height: 1.3rem;
+      cursor: pointer;
+  }
+  img {
+    border-bottom: 2px dashed $orange;
+  }
+}
+.player_preview {
+  width: 100%;
+  padding: 20px;
+  img {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 50px;
+  }
+}
+
+.field-row {
+  text-align: center;
+}
+#player-headshot {
+    border-bottom: 5px dashed $orange;
+
+}
+.player-profile {
+    width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    #player-name {
+      text-align: center;
+      font-size: 2rem;
+    }
+    #player-team {
+      text-align: center;
+    }
+}
+
+.player-fields {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    label {
+      text-transform: uppercase;
+      font-size: .8rem;
+      font-weight: bold;
+    }
+}
+
+.chart_searchForm {
+    width: 75%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-term-label{
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    color: gray;
+  }
+
+.step-icon {
+    width: 100%;
+    color: $orange;
+    text-align: center;
+    font-size: 7rem;
+}
+
+.toolbar {
+  padding-top: 30px;
+  text-align: center;
+  button {
+    background: $blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+  a {
+    background: $blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+}
+
+#chart-loading {
+  p {
+    margin: 10px;
+    text-align: center;
+    color: gray;
+    font-size: .9rem;
+  }
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
+#chart-error {
+  text-align: center;
+
+}
+
+#player-search-button {
+    color: #fff;
+    background: $blue;
+    border-radius: 0px 20px 20px 0px;
+}
