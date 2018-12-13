@@ -11,7 +11,8 @@ function displayResults(data, term) {
     termLabel.text('Search results for "' + term + '":');
     termLabel.fadeIn();
     $.map(parseData, function(player, i) {
-      results.append('<li class="player-selector" value=' + player.id + '>' + player.full_name + '</li>');
+      headshotURL = getHeadshot(player.id);
+      results.append('<li class="player-selector" value=' + player.id + '>' + '<img src=' + headshotURL + ' onerror="javascript:this.src=\'/static/img/player_placeholder.png\'">' + player.full_name + '</li>');
     })
 
     results.fadeIn();

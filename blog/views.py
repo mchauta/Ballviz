@@ -7,14 +7,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle, Arc
 from matplotlib.offsetbox import  OffsetImage
-import io
-import base64
+import io, datetime, base64, json, urllib.request
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import commonplayerinfo, playergamelog, shotchartdetail
-import json
 import pandas as pd
 import seaborn as sns
-import urllib.request
 import NBAapi as nba
 
 
@@ -77,6 +74,7 @@ def get_games(request):
 
 def make_chart(request):
     if request.method == 'GET':
+        date = datetime.datetime.today().strftime('%m-%d-%Y')
         plt.clf()
         teamID = '0';
         theme = request.GET['theme']
@@ -105,11 +103,12 @@ def make_chart(request):
 
         fig = plt.figure(figsize=(12,10))
 
-        plot = nba.plot.grantland_shotchart(shot_df,la_df)
-        plt.text(0,38,season,fontsize=10,horizontalalignment='center',verticalalignment='center')
+        plot = nba.plot.grantland_shotchart(shotchart = shot_df, leagueaverage= la_df, season = season, seasonType = seasonType)
+        plt.text(0,-8,'data by: stats.nba.com '+ date, fontsize=7,horizontalalignment='center',verticalalignment='center')
+        plt.text(0,-9,'chart by: ballviz.com',fontsize=7,horizontalalignment='center',verticalalignment='center')
 
         stringIObytes = io.BytesIO()
-        plt.savefig(stringIObytes, format='png', bbox_inches='tight', pad_inches=0.1)
+        plt.savefig(stringIObytes, format='png', bbox_inches='tight', pad_inches=0.1, dpi=300)
         stringIObytes.seek(0)
         base64_data = base64.b64encode(stringIObytes.read())
 

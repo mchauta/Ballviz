@@ -22,15 +22,18 @@
   margin-right: auto;
     li {
       list-style-type: none;
-      border: 2px solid $grey;
-      /* width: 60%; */
       margin-right: auto;
       margin-left: auto;
       font-size: 1.1rem;
       padding: 8px;
       margin-bottom: 5px;
-      border-radius: 25px;
       text-align: center;
+      display: inline-block;
+      width: 115px;
+      line-height: 1.3rem;
+  }
+  img {
+    border-bottom: 2px dashed $orange;
   }
 }
 .player_preview {
@@ -96,4 +99,36 @@
     color: $orange;
     text-align: center;
     font-size: 7rem;
+}
+
+.toolbar {
+  padding-top: 30px;
+  text-align: center;
+  button {
+    background: $blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+  a {
+    background: $blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+}
+
+#chart-loading {
+  p {
+    margin: 10px;
+    text-align: center;
+    color: gray;
+    font-size: .9rem;
+  }
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
 }

@@ -62,7 +62,9 @@ function getGames(id, season, seasonType) {
    })
 }
 
-function makeChart(playerID, season, seasonType) {
+function makeChart(playerID, season, seasonType, theme) {
+  downloadLink.hide();
+  chartLoading.fadeIn();
   console.log(playerID, season, seasonType);
   $.ajax(
   {
@@ -72,11 +74,15 @@ function makeChart(playerID, season, seasonType) {
                playerID: playerID,
                season: season,
                seasonType: seasonType,
-               theme: 'Hex',
+               theme: theme,
       },
       success: function( data )  {
-      
+
+
         chartResults.attr('src', 'data:image/png;base64, ' + data);
+        downloadLink.attr({href: 'data:image/png;base64, ' + data, download: 'ShotChart_' + playerID + '_' + season });
+        downloadLink.fadeIn();
+        chartLoading.hide();
         //return JSON.parse(selectedGames);
 
       },

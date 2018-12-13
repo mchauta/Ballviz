@@ -40,11 +40,10 @@
             </div>
             <div id="step-two" class="step">
               <h2>Step 2: Pick Your Data</h2>
-              <button id="go-back-2">Go Back</button>
               <div class="row">
                 <div class="col-12">
                   <div class="player-profile">
-                    <img src="/static/img/player_placeholder.jpg/" id="player-headshot">
+                    <img src="{% static '/img/player_placeholder.png' %}" onerror='javascript:this.src="{% static '/img/player_placeholder.png' %}"' id="player-headshot">
                     <div id="player-name"></div>
                     <div id="player-team"></div>
 
@@ -80,13 +79,28 @@
                     <div class="field-row">
                       <label>Theme:</label>
                       <select id="theme-selector">
-                        <option>Hex</option>
+                        <option>BallViz</option>
+                        <option>"Goldsberry"</option>
                       </select>
                     </div>
-                    <button id="make-chart">Make Chart</button>
-                    <img src="" id="chart-results">
+                    <div class="toolbar">
+                      <button id="go-back-2"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                      <button id="make-chart"><i class="fas fa-basketball-ball"></i> Make Chart</button>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="step" id="step-three">
+              <h2>Step 3: Profit!</h2>
+              <div id="chart-loading">
+                <img src="{% static '/img/svg/loading-hex.svg' %}">
+                <p>Loading...</p>
+              </div>
+              <img src="" id="chart-results">
+              <div class="toolbar">
+                <button id="go-back-3"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                <a id="download-link" href="this" filename="none.png" download="this"><i class="fas fa-save"></i> Save</a>
               </div>
             </div>
         </div>

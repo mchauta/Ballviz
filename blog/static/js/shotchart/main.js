@@ -3,15 +3,12 @@
 
 $(document).ready( function() {
 
-  stepTwo.hide();
-  termLabel.hide();
-  results.hide();
-  gameSelectorRow.hide();
-  gameFrameSelectorRow.hide();
-
 
   goback2.click(function() {
     goBack(stepTwo, stepOne);
+  })
+  goback3.click(function() {
+    goBack(stepThree, stepTwo);
   })
 
   results.on('click','.player-selector',function(){
@@ -37,9 +34,14 @@ $(document).ready( function() {
   })
 
   makeChartButton.click(function() {
+    chartResults.attr('src', '');
+    downloadLink.attr({href: 'none', download: 'none' });
     console.log(seasonSelector.val());
     season = convertSeasonID(seasonSelector.val());
-    makeChart(currentPlayer, season.year, season.type );
+    makeChart(currentPlayer, season.year, season.type, themeSelector.val() );
+
+    stepTwo.hide();
+    stepThree.fadeIn();
   })
 
   seasonSelector.change(function() {
