@@ -23,6 +23,7 @@
   const makeChartButton = $('#make-chart');
   const chartResults = $('#chart-results');
   const chartLoading = $('#chart-loading');
+  const chartError = $('#chart-error');
   const downloadLink = $('#download-link');
 
 

@@ -31,6 +31,7 @@
       display: inline-block;
       width: 115px;
       line-height: 1.3rem;
+      cursor: pointer;
   }
   img {
     border-bottom: 2px dashed $orange;
@@ -131,4 +132,15 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
+}
+
+#chart-error {
+  text-align: center;
+
+}
+
+#player-search-button {
+    color: #fff;
+    background: $blue;
+    border-radius: 0px 20px 20px 0px;
 }

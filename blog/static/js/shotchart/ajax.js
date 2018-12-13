@@ -78,15 +78,26 @@ function makeChart(playerID, season, seasonType, theme) {
       },
       success: function( data )  {
 
+        data = JSON.parse(data);
+        console.log(data);
 
-        chartResults.attr('src', 'data:image/png;base64, ' + data);
-        downloadLink.attr({href: 'data:image/png;base64, ' + data, download: 'ShotChart_' + playerID + '_' + season });
-        downloadLink.fadeIn();
-        chartLoading.hide();
+        if (data.dataFound) {
+          chartResults.attr('src', 'data:image/png;base64, ' + data.imageData);
+          downloadLink.attr({href: 'data:image/png;base64, ' + data.imageData, download: 'ShotChart_' + playerID + '_' + season });
+          downloadLink.fadeIn();
+          chartLoading.hide();
+        } else {
+          chartLoading.hide();
+          chartError.text('No data found. Try again.');
+          chartError.fadeIn()
+        }
         //return JSON.parse(selectedGames);
 
       },
       error: function(error) {
+        chartLoading.hide();
+        chartError.text(error.statusText);
+        chartError.fadeIn()
         console.log(error);
       }
    })

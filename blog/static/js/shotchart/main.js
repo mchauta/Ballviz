@@ -8,7 +8,9 @@ $(document).ready( function() {
     goBack(stepTwo, stepOne);
   })
   goback3.click(function() {
+    chartError.empty();
     goBack(stepThree, stepTwo);
+
   })
 
   results.on('click','.player-selector',function(){

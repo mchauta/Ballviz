@@ -75,6 +75,7 @@ def get_games(request):
 def make_chart(request):
     if request.method == 'GET':
         date = datetime.datetime.today().strftime('%m-%d-%Y')
+        response = {}
         plt.clf()
         teamID = '0';
         theme = request.GET['theme']
@@ -98,21 +99,30 @@ def make_chart(request):
         avg = shotChartData['resultSets'][1]['rowSet']
         avgHeaders = shotChartData['resultSets'][1]['headers']
 
-        shot_df = pd.DataFrame(shots, columns=shotHeaders)
-        la_df = pd.DataFrame(avg, columns=avgHeaders)
+        if (shots) :
+            shot_df = pd.DataFrame(shots, columns=shotHeaders)
+            la_df = pd.DataFrame(avg, columns=avgHeaders)
 
-        fig = plt.figure(figsize=(12,10))
+            fig = plt.figure(figsize=(12,10))
 
-        plot = nba.plot.grantland_shotchart(shotchart = shot_df, leagueaverage= la_df, season = season, seasonType = seasonType)
-        plt.text(0,-8,'data by: stats.nba.com '+ date, fontsize=7,horizontalalignment='center',verticalalignment='center')
-        plt.text(0,-9,'chart by: ballviz.com',fontsize=7,horizontalalignment='center',verticalalignment='center')
+            plot = nba.plot.grantland_shotchart(shotchart = shot_df, leagueaverage= la_df, season = season, seasonType = seasonType)
+            plt.text(0,-8,'data by: stats.nba.com '+ date, fontsize=7,horizontalalignment='center',verticalalignment='center')
+            plt.text(0,-9,'chart by: ballviz.com',fontsize=7,horizontalalignment='center',verticalalignment='center')
 
-        stringIObytes = io.BytesIO()
-        plt.savefig(stringIObytes, format='png', bbox_inches='tight', pad_inches=0.1, dpi=300)
-        stringIObytes.seek(0)
-        base64_data = base64.b64encode(stringIObytes.read())
+            stringIObytes = io.BytesIO()
+            plt.savefig(stringIObytes, format='png', bbox_inches='tight', pad_inches=0.1, dpi=300)
+            stringIObytes.seek(0)
+            base64_data = base64.b64encode(stringIObytes.read())
+
+            base64_data = base64_data.decode("utf8")
+
+            response = {'dataFound': True, 'imageData': base64_data}
+
+        else :
+            response = {'dataFound': False, 'imageData': ''}
 
 
-        return HttpResponse(base64_data) # Sending a success response
+        response = json.dumps(response)
+        return HttpResponse(response) # Sending a success response
     else:
         return HttpResponse("Request method is not a GET")
