@@ -22,6 +22,7 @@ function getPlayerInfo (id) {
 }
 
 function findPlayers(term) {
+  console.log('fired findPlayers');
   $.ajax(
   {
       type:"GET",
