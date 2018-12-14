@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+NBAapi/__init__.py
+NBAapi/draft.py
+NBAapi/league.py
+NBAapi/player.py
+NBAapi/plot.py
+NBAapi/shotchart.py
+NBAapi/team.py
+NBAapi.egg-info/PKG-INFO
+NBAapi.egg-info/SOURCES.txt
+NBAapi.egg-info/dependency_links.txt
+NBAapi.egg-info/not-zip-safe
+NBAapi.egg-info/top_level.txt
+NBAapi/data/court.jpg
