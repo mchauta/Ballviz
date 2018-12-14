@@ -3,13 +3,15 @@
 {% block title %}NBA Shotchart Maker{% endblock %}
 
 {% block js %}
-  <script src="{% static '/js/test-ajax.js/' %}"></script>
-  <script src="{% static '/js/shotchart/const.js/' %}"></script>
-  <script src="{% static '/js/shotchart/functions.js/' %}"></script>
-  <script src="{% static '/js/shotchart/ajax.js/' %}"></script>
-  <script src="{% static '/js/shotchart/main.js/' %}"></script>
+  <script src="{% static 'js/test-ajax.js' %}"></script>
+  <script src="{% static 'js/shotchart/const.js' %}"></script>
+  <script src="{% static 'js/shotchart/functions.js' %}"></script>
+  <script src="{% static 'js/shotchart/ajax.js' %}"></script>
+  <script src="{% static 'js/shotchart/main.js' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 {% endblock %}
+
+
 
 {% block css %}
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -43,7 +45,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="player-profile">
-                    <img src="{% static '/img/player_placeholder.png' %}" onerror='javascript:this.src="{% static '/img/player_placeholder.png' %}"' id="player-headshot">
+                    <img src="{% static 'img/player_placeholder.png' %}" onerror='javascript:this.src="{% static 'img/player_placeholder.png' %}"' id="player-headshot">
                     <div id="player-name"></div>
                     <div id="player-team"></div>
 
@@ -94,7 +96,7 @@
             <div class="step" id="step-three">
               <h2>Step 3: Profit!</h2>
               <div id="chart-loading">
-                <img src="{% static '/img/svg/loading-hex.svg' %}">
+                <img src="{% static 'img/svg/loading-hex.svg' %}">
                 <p>Loading...</p>
               </div>
               <img src="" id="chart-results">
