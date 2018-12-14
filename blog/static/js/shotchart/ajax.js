@@ -1,6 +1,7 @@
 //shotchart ajax functions
 
 function getPlayerInfo (id) {
+  console.log("crash");
   $.ajax(
   {
       type:"GET",
@@ -22,7 +23,6 @@ function getPlayerInfo (id) {
 }
 
 function findPlayers(term) {
-  console.log('fired findPlayers');
   $.ajax(
   {
       type:"GET",
