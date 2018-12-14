@@ -23,6 +23,7 @@ function getPlayerInfo (id) {
 }
 
 function findPlayers(term) {
+  console.log('findPLayers');
   $.ajax(
   {
       type:"GET",
@@ -41,6 +42,7 @@ function findPlayers(term) {
 }
 
 function getGames(id, season, seasonType) {
+  console.log('getGames');
   $.ajax(
   {
       type:"GET",
