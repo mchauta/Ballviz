@@ -126,3 +126,15 @@ def make_chart(request):
         return HttpResponse(response) # Sending a success response
     else:
         return HttpResponse("Request method is not a GET")
+
+def test_api(request) :
+
+    if request.method == 'GET':
+        print('in')
+        id = request.GET['id']
+        print(id)
+        games = nba.player.gamelog(id)
+        print(games)
+        return HttpResponse(games) # Sending a success response
+    else:
+        return HttpResponse("Request method is not a GET")

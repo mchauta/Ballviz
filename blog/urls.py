@@ -11,4 +11,5 @@ urlpatterns = [
     re_path(r'^test-plot/$', views.test_plot, name='test_plot'),
     re_path(r'^get-games/$', views.get_games, name='get_games'),
     re_path(r'^make-chart/$', views.make_chart, name='make_chart'),
+    re_path(r'^test-api/$', views.test_api, name='test_api'),
 ]

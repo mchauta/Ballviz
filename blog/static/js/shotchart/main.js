@@ -67,4 +67,10 @@ $(document).ready( function() {
     }
 
   })
+  testApi.click(function() {
+    console.log("in");
+    player = currentPlayer;
+    testAPI(player);
+  })
+
 })

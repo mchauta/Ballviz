@@ -25,6 +25,7 @@
   const chartLoading = $('#chart-loading');
   const chartError = $('#chart-error');
   const downloadLink = $('#download-link');
+  const testApi = $('#test-api');
 
 
   let currentPlayer = '';

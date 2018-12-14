@@ -41,6 +41,25 @@ function findPlayers(term) {
    })
 }
 
+function testAPI(id) {
+  console.log("crash");
+  $.ajax(
+  {
+      type:"GET",
+      url: "/test-api/",
+      data:{
+               id: id
+      },
+      success: function( data )  {
+        console.log(data);
+
+      },
+      error: function(error) {
+        console.log(error);
+      }
+   })
+}
+
 function getGames(id, season, seasonType) {
   console.log('getGames');
   $.ajax(
